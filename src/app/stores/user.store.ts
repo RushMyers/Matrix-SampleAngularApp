@@ -1,13 +1,22 @@
-import { Action, Reducer } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 
 import { User } from '../models/user';
 
-export const
-    LOAD_USER_PROFILE = 'LOAD_USER_PROFILE',
-    UPDATE_USER_ROLE_MASK = 'UPDATE_USER_ROLE_MASK',
-    CLEAR_USER_ROLE_MASK = 'CLEAR_USER_ROLE_MASK';
+// State
+export type State = User;
 
-export function user(state: User = null, action: Action) {
+// ActionTypes
+export const
+    LOAD_USER_PROFILE = 'LOAD_USER_PROFILE';
+
+export class LoadUserProfileAction implements Action {
+    readonly type = LOAD_USER_PROFILE;
+    payload: User;
+}
+export type Actions = LoadUserProfileAction;
+
+// Store/Reducer
+export function user(state: State = null, action: Actions): State {
     switch (action.type) {
 
         case LOAD_USER_PROFILE:
@@ -16,18 +25,5 @@ export function user(state: User = null, action: Action) {
         default:
             return state;
 
-    }
-};
-
-export function userRoleMask(state: any = {}, action: Action) {
-    switch (action.type) {
-        case UPDATE_USER_ROLE_MASK:
-            return action.payload;
-
-        case CLEAR_USER_ROLE_MASK:
-            return {};
-
-        default:
-            return state;
     }
 };

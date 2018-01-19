@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import {
     START_LOADER,
     STOP_LOADER,
-} from '../stores/appState.store';
+} from '../stores/loaderState.store';
 
 @Injectable()
 export class LoaderActions {

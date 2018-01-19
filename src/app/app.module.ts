@@ -30,8 +30,8 @@ import { AppComponent } from './components/app/app.component';
     HttpModule,
     MomentModule,
     RouterModule.forRoot(APP_ROUTES),
-    StoreModule.provideStore(APP_STORES),
-    StoreDevtoolsModule.instrumentOnlyWithExtension({ maxAge: 5 }),
+    StoreModule.forRoot(APP_STORES),
+    environment.production ? [] : StoreDevtoolsModule.instrument(),
     ToasterModule,
     HttpClientModule
   ],

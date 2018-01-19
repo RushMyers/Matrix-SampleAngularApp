@@ -1,0 +1,8 @@
+.mainBodyLayout {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100vh;
+}
+.mainBody {
+    flex: 1 0;
+}

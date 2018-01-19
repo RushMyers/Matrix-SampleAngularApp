@@ -1,13 +1,30 @@
-import { Action, Reducer } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 
 import * as Constants from '../constants/constants';
 import { LogLevels } from '../services/logging.service';
 
-// ActionTypes
-export const
-    UPDATE_APP_STATE = 'UPDATE_APP_STATE';
+// State
+export type State = {
+    /* globals */
+    'global.apiVersion': string;
+    'global.isUserSessionActive': boolean;
 
-// declare all valid properties in initial state, as we validate when updating
+    /* logging service */
+    'logging.sendToConsole': boolean;
+    'logging.sendToApi': boolean;
+    'logging.logLevel': number;
+
+    /* Modals */
+    'isPaymentTransactionModalShown': boolean;
+
+    /* Main Menu */
+    'menu.mainMenuCollapsed': boolean;
+
+    /* search */
+    'search.quoteSearchObject': null,
+    'search.returnToQuoteSearchResults': boolean;
+    'search.backToSearchResultsNeeded': boolean;
+};
 const initialAppState = {
     /* globals */
     'global.apiVersion': '',
@@ -30,7 +47,18 @@ const initialAppState = {
     'search.backToSearchResultsNeeded': false
 };
 
-export function appState(state: object = initialAppState, action: Action) {
+// ActionTypes
+export const
+    UPDATE_APP_STATE = 'UPDATE_APP_STATE';
+
+export class UpdateAppStateAction implements Action {
+    readonly type = UPDATE_APP_STATE;
+    payload: object;
+}
+export type Actions = UpdateAppStateAction;
+
+// Store/Reducer
+export function appState(state: State = initialAppState, action: Actions): State {
     switch (action.type) {
         case UPDATE_APP_STATE:
             const newState = Object.assign({}, state);
@@ -44,53 +72,6 @@ export function appState(state: object = initialAppState, action: Action) {
                 }
             });
             return newState;
-
-        default:
-            return state;
-
-    }
-};
-
-// ******************************************************************************************************** //
-// support for LoaderGraphic state mgmt
-// keep separate from other appState to minimize cascading/frequent updates
-
-// ActionTypes
-export const
-    START_LOADER = 'START_LOADER',
-    STOP_LOADER = 'STOP_LOADER';
-
-// declare all valid properties in initial state, as we validate when updating
-const loaderInitialState = {
-    isLoaderVisible: false,
-    isBlockerVisible: false,
-    refCount: 0,
-}
-
-export function loaderState(state: any = loaderInitialState, action: Action) {
-    switch (action.type) {
-
-        case START_LOADER:
-            return Object.assign(
-                {},
-                state,
-                {
-                    isBlockerVisible: action.payload.shouldBlock ? true : state.isBlockerVisible,
-                    isLoaderVisible: true,
-                    refCount: state.refCount + 1,
-                }
-            );
-
-        case STOP_LOADER:
-            return Object.assign(
-                {},
-                state,
-                {
-                    isBlockerVisible: (state.isBlockerVisible && (state.refCount - 1) === 0) ? false : state.isBlockerVisible,
-                    isLoaderVisible: ((state.refCount - 1) > 0),
-                    refCount: state.refCount - 1,
-                }
-            );
 
         default:
             return state;

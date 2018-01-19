@@ -27,7 +27,7 @@ export class LoggingService implements OnInit, OnDestroy {
     private appStateSubscription: any;
 
     constructor(private _http: Http, private _store: Store<any>) {
-        this.userSubscription = this._store.select<User>('user')
+        this.userSubscription = this._store.select('user')
             .subscribe(user => { this.user = user; });
         this.appStateSubscription = this._store.select('appState')
             .subscribe(appState => { this.appState = appState; });

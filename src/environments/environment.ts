@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  useMocking: false,
+  useMocking: true,
 };

@@ -6,42 +6,8 @@ import { VehicleType } from '../../models/vehicleType';
 
 @Component({
   selector: 'app-vehicle-type',
-  // templateUrl: './vehicleType.component.html',
-  template: `
-    <div class="mainContainer">
-      <h1 class="name">{{selectedVehicleType?.name}}</h1>
-      <div><img class="vehicleTypeImage" src="{{selectedVehicleType?.imageUrl}}" /></div>
-      <div class="description">{{selectedVehicleType?.description}}</div>
-      <div class="basePrice">{{selectedVehicleType?.basePrice | currency: 'USD' : true }}</div>
-      <div (click)="buyNow()"><img src="http://marketingland.com/wp-content/ml-loads/2015/08/image13.png"/></div>
-    </div>
-
-    <app-payment-trx-modal *ngIf="isPaymentTransactionModalShown"
-      [paymentAmount]="selectedVehicleType?.basePrice"
-      (paymentTrxModalClosed)="paymentTrxModalClosed()"
-      ></app-payment-trx-modal>
-  `,
-  // styleUrls: ['./vehicleType.component.css']
-  styles: [`
-    .mainContainer {
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: center;
-    }
-    .name {
-      font-size: 5em;
-    }
-    .vehicleTypeImage {
-      height: 40vh;
-      border-radius: 40px;
-    }
-    .description {
-      font-size: xx-large;
-    }
-    .basePrice {
-      font-size: small;
-    }
-  `],
+  styleUrls: ['./vehicleType.component.css'],
+  templateUrl: './vehicleType.component.html',
 })
 export class VehicleTypeComponent implements OnInit, OnDestroy {
 

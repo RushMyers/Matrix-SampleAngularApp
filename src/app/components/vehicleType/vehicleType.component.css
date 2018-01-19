@@ -1,0 +1,18 @@
+.mainContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+  .name {
+    font-size: 5em;
+  }
+  .vehicleTypeImage {
+    height: 40vh;
+    border-radius: 40px;
+  }
+  .description {
+    font-size: xx-large;
+  }
+  .basePrice {
+    font-size: small;
+  }

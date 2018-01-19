@@ -1,11 +1,13 @@
 // Store framework functions
-import { compose } from '@ngrx/core';
+import { compose } from '@ngrx/store';
 import { combineReducers } from '@ngrx/store';
 
 // Stores/Reducers
-import { appState, loaderState } from './stores/appState.store';
+import { appState } from './stores/appState.store';
+import { loaderState } from './stores/loaderState.store';
 import { payment } from './stores/payment.store';
-import { user, userRoleMask } from './stores/user.store';
+import { user } from './stores/user.store';
+import { userRoleMask } from './stores/userRoleMask.store';
 import { vehicleTypes } from './stores/vehicles.store';
 
 // const reducers = { /* see below */
